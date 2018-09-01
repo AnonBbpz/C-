@@ -3,6 +3,8 @@ using System.Collections;
 
 public class collisionScript : MonoBehaviour {
 
+//dont forget to tag and use exact names in unity editor
+
   // Use this for initialization
   void Start () {
 
