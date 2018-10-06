@@ -1,0 +1,63 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class playerHealth : MonoBehaviour {
+
+    public float fullHealth;
+    public GameObject deathFX;
+    float currentHealth;
+    playerMove movement;
+
+    public Slider healthSlider;
+    public Image hurtImage;
+    bool hurt = false;
+    Color hurtColor = new Color(0f, 0f, 0f, 0.5f);
+    float smoothColor = 5f;
+
+
+	// Use this for initialization
+	void Start () {
+        currentHealth = fullHealth;
+        movement = GetComponent<playerMove>();
+
+        healthSlider.maxValue = fullHealth;
+        healthSlider.value = fullHealth;
+
+	}
+	
+	// Update is called once per frame
+	void Update () {
+        if (hurt)
+        {
+            hurtImage.color = hurtColor;
+
+        }
+        else
+        {
+            hurtImage.color = Color.Lerp(hurtImage.color, Color.clear, smoothColor * Time.deltaTime);
+
+        }
+        hurt = false;
+	}
+    public void AddDamage(float damage)
+    {
+        if (damage <= 0) return;
+        currentHealth -= damage;
+
+        hurt = true;
+
+
+        healthSlider.value -= damage;
+        if (currentHealth <= 0)
+        {
+            MakeDead();
+        }
+    }
+    public void MakeDead()
+    {
+        Instantiate(deathFX, transform.position, transform.rotation);
+        Destroy(gameObject);
+    }
+}
