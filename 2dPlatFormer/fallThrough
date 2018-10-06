@@ -1,0 +1,4 @@
+//used for badguys to fall through objects
+void Start(){
+Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Shootable"),LayerToMask.NameToLayer("Shootable")))';
+}
