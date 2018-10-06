@@ -6,6 +6,7 @@ public class enemyHealth : MonoBehaviour {
 
     public float enemyMaxHealth;
     float currentHealth;
+    public GameObject deathFx;
 
 
 	// Use this for initialization
@@ -28,5 +29,7 @@ public class enemyHealth : MonoBehaviour {
     void MakeDead()
     {
         Destroy(gameObject);
+	        Instantiate(deathFx, transform.position, transform.rotation);
+
     }
 }
